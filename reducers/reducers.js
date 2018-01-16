@@ -2,24 +2,20 @@ import { combineReducers } from 'redux';
 
 import {SUBMIT_MESSAGE} from "../actions/actions";
 
-
-const defaults = {
-    MESSAGE: {},
-
+const messages_initState = {
+    mess: [],
 };
 
 let combinedReducer = combineReducers({
-    messages: messageReducer,
+    messagesList: messageReducer,
 });
 
-const messageReducer = function(state = defaults.MESSAGE, action) {
+const messageReducer = function(state = messages_initState, action) {
     if (action.type === 'SUBMIT_MESSAGE') {
-        return [...state,action.messages];
+        return {...state, messagesList:[...state.messagesList,...action.messages]  };
     }
     return state;
 };
-
-
 
 
 export default combinedReducer;

@@ -6,21 +6,18 @@ import MessageForm from './MessageForm';
 import ForumHistory from './ForumHistory';
 
 
-class ForumBlock extends React.Component {
+static propTypes = {
+    messagesList: PropTypes.array.isRequired, // передано из Redux
+};
 
-
-    static propTypes = {
-        messages: PropTypes.object.isRequired, // передано из Redux
-    };
-
-    render() {
-        console.log('Render ForumBlock');
+render() {
+    console.log('Render ForumBlock');
 
 
 
-        let messagesCode=this.props.messages.map( (v, index) =>
-            <ForumHistory key={index} header={v.header} message={v.message} />
-        );
+    let messagesCode=this.props.messagesList.map( (v, index) =>
+        <ForumHistory key={index} header={v.header} message={v.message} />
+);
 
         return (
             <div className='ForumBlock'>
